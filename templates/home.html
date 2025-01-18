@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Perfil</title>
+    {% load static %}
+        <link rel="stylesheet" href="{% static 'styles/global.css' %}">
+        <link rel="stylesheet" href="{% static 'styles/home.css' %}">
+        <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+</head>
+<body>
+    {% comment %} <h1>Bem-vindo, {{ request.user.username }}</h1> {% endcomment %}
+
+    <div class='container'>
+        <div class='lateral'>
+            <ul>
+                <li ><img src="{% static 'images/twitter-x-white-logopng.webp' %}" class='image-logo' alt="Descrição da imagem"></li>
+                <li class='list-content'>Pagina Inicial</li>
+                <li class='list-content'>Explorar</li>
+                <li class='list-content'>Notificações</li>
+                <li class='list-content'>Mensagens</li>
+                <li class='list-content'>Glok</li>
+                <li class='list-content'>Comunidades</li>
+                <li class='list-content'>Perfil</li>
+                <li class='list-content'>Mais</li>
+                <li><button class='btn-postar-1'>postar</button></li>
+                <li class='list-content'>{{ request.user.username }}</li>
+            </ul>
+        </div>
+
+        <div class='main'>
+            <div class='main-groups'>
+                <p>para você</p>
+                <p>seguindo</p>
+            </div>
+            {% comment %} <h2>
+                O que esta Acontecendo?
+            </h2> {% endcomment %}
+            <form method="POST" action="." enctype="multipart/form-data" class='post-user'>
+                {% csrf_token %}
+                <textarea name="content" rows="4" cols="50" placeholder="O que esta acontecendo? esta é uma pagina so de exemplo escreva seu post aqui " class='text-area-input'></textarea><br><br>
+                <div class='div-btn'>
+                    <button type="submit" class='btn-postar'>Postar</button>
+                </div>
+
+            </form>
+            <ul class='ul-post'>
+                {% if posts %}
+                    {% for post in posts %}
+                        <li class='list-post'>
+                            
+                            <p class='post-content'>{{ post.content }}</p>
+                            <small>Criado por: {{ post.user }}</small>
+                            
+                            <!-- Verifica se o post pertence ao usuário logado -->
+                            {% if post.user == request.user.username %}
+                                <!-- Botão para Editar -->
+                                <div class='btn-e-btn-d'>
+                                    <form method="GET" action="{% url 'edit_post' post.id %}">
+                                        {% csrf_token %}
+                                        <button type="submit" class='btn-editar'>Editar</button>
+                                    </form>
+                
+                                    <!-- Botão para Deletar -->
+                                    <form method="POST" action="{% url 'delete_post' post.id %}">
+                                        {% csrf_token %}
+                                        <button type="submit" class='btn-deletar'>Deletar</button>
+                                    </form>
+                                </div>
+
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                {% else %}
+                    <li>Nenhum post encontrado.</li>
+                {% endif %}
+            </ul>
+        
+            <p>Quantidade de posts: {{ posts|length }}</p> 
+        </div>
+
+        <div class='right'>
+            <input placeholder='buscar'/ class='buscar-input'>
+            <div class='right-premium'>
+                <h2>Assine o Premium
+                </h2>
+                <p>
+                    Assine para desbloquear novos recursos e, se elegível, receba uma parte da receita.
+                </p>
+                <button> Inscrever-se</button>
+            </div>
+
+            <div class='right-premium'>
+                <h2>O que esta acontecendo</h2>
+                <div class='content-present'>
+                    <span class='content-span'>Assunto do momento em Brasil</span>
+                    <p>Sisu</p>
+                    <span class='content-span'>24 mil post</span>
+                </div>
+                <div class='content-present'>
+                    <span class='content-span'>Assunto do momento em Brasil</span>
+                    <p>super urach</p>
+                    <span class='content-span'>10 mil post</span>
+                </div>
+                <div class='content-present'>
+                    <span class='content-span'>Assunto do momento em Brasil</span>
+                    <p>Iphone</p>
+                    <span class='content-span'>10 mil post</span>
+                </div>
+            </div>
+
+            <div class='right-premium'>
+                <h2>Quem seguir</h2>
+                <div class='right-person'>
+                    <p>Felipe</p>
+                    <button>seguir</button>
+                </div>
+                <div class='right-person'>
+                    <p>maria</p>
+                    <button>seguir</button>
+                </div>
+                <div class='right-person'>
+                    <p>sofia</p>
+                    <button>seguir</button>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    
+
+    
+
+    <!-- Exibição de erros -->
+    {% if errors %}
+        <ul class='error-ul'>
+            {% for field, messages in errors.items %}
+                {% for message in messages %}
+                    <li class='error-li'>{{ field }}: {{ message }}</li>
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>

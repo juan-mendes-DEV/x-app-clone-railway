@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Login</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles/login.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/global.css' %}">
+</head>
+<body>
+    
+    <h2>Entrar</h2>
+    <div class='container'>
+        
+        <div class='container-image'>
+            <img src="{% static 'images/twitter-x-white-logopng.webp' %}" class='image-logo' alt="Descrição da imagem">
+        </div>
+
+        <form method="post" class='form-login'>
+            {% csrf_token %}
+            <label>Nome de Usuario:</label>
+            <input type="text" name="username">
+            <p>{{ errors.username.0 }}</p>
+        
+            <label>Senha de acesso:</label>
+            <input type="password" name="password">
+            <p>{{ errors.password.0 }}</p>
+        
+            <button type="submit">Entrar</button>
+            
+        </form>
+        <a href="{% url 'register' %}" class='link'>Não tem uma conta? Cadastre-se</a>
+    </div>
+</body>
+</html>

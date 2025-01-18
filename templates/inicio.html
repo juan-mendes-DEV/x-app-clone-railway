@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Feed</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'styles/global.css' %}">
+        <link rel="stylesheet" href="{% static 'styles/inicio.css' %}">
+        <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+    </head>
+    <body>
+        
+        <div class='container'>
+
+            <div class='container-image'>
+                <img src="{% static 'images/twitter-x-white-logopng.webp' %}" class='image-logo' alt="Descrição da imagem">
+            </div>
+            
+            <div class='container-content'>
+                <h1 class='titleInit'>Acontecendo agora</h1>
+                <h2 class='titleInscreva'>Inscreva-se Hoje</h2>
+
+                <div class='group-btn'>
+                    <button class='btn-google'>Fazer login com google</button>
+                    <button class='btn-apple'>Fazer login com Apple</button>
+                </div>
+                
+                <div class='linha'>
+                    <span>ou</span>
+                </div>
+                
+                <div class='rotas'>
+                    <a href="{% url 'register' %}">
+                        <button type="button" class='btn-criar'>Criar Conta</button>
+                    </a>
+                    <p class='text'>
+                        Ao se inscrever, você concorda com os Termos de Serviço e a Política de Privacidade, incluindo o Uso de Cookies.
+                    </p>
+                    
+                    <p class='text-entrar'>
+                        Ja tem uma conta?
+                    </p>
+                    <a href="{% url 'login' %}">
+                        <button type="button" class='btn-entrar'>Entrar</button>
+                    </a>
+                </div>
+            </div>
+        
+            <footer class='rodape'>
+                <ul>
+                    <li>Sobre</li>
+                    <li>Baixe o aplicativo do X</li>
+                    <li>Central de Ajuda</li>
+                    <li>Termos de Serviço</li>
+                    <li>Política de Privacidade</li>
+                    <li>Política de cookies</li>
+                    <li>Acessibilidade</li>
+                    <li>Informações de anúncios</li>
+                    <li>
+                        Blog
+                    </li>
+                    <li>
+                        Carreiras
+                    </li>
+                    <li>
+                        Recursos da marca
+                    </li>
+                    <li>
+                        Publicidade
+                    </li>
+                    <li>
+                        Marketing
+                    </li>
+                    <li>
+                        X para Empresas
+                    </li>
+                    <li>
+                        Desenvolvedores
+                    </li>
+                    <li>
+                        Diretório
+                    </li>
+                    <li>
+                        Configurações
+                    </li>
+                    <li>
+                        © 2025 X Corp.
+                    </li>
+    
+                </ul>
+            </footer> 
+        <div>
+
+    </body>
+</html>

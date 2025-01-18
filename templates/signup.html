@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Cadastro</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles/register.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/global.css' %}">
+</head>
+<body>
+    <h2>Cadastro</h2>
+    <div class='container'>
+        
+        <div class='container-image'>
+            <img src="{% static 'images/twitter-x-white-logopng.webp' %}" class='image-logo' alt="Descrição da imagem">
+        </div>
+
+        <form method="post" class='form-register'>
+            {% csrf_token %}
+            <label>Nome:</label>
+            <input type="text" name="username">
+            <p class='error'>{{ errors.username.0 }}</p>
+        
+            <label>Email:</label>
+            <input type="email" name="email">
+            <p class='error'>{{ errors.email.0 }}</p>
+        
+            <label>Senha:</label>
+            <input type="password" name="password">
+            <p class='error'>{{ errors.password.0 }}</p>
+        
+            <label>Confirmar Senha:</label>
+            <input type="password" name="confirm_password">
+            <p class='error'>{{ errors.confirm_password.0 }}</p>
+        
+            <button type="submit">Inscrever-se</button>
+        </form>
+        <a href="{% url 'login' %}">Já tem uma conta? Faça login</a>
+    </div>
+</body>
+</html>
