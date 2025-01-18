@@ -18,7 +18,7 @@ import environ
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 env = environ.Env()
-environ.Env.read_env(os.path.join(BASE_DIR, '.env.dev'))
+environ.Env.read_env(os.path.join(BASE_DIR, ".env.dev"))
 
 
 # Quick-start development settings - unsuitable for production
@@ -30,7 +30,11 @@ SECRET_KEY = "django-insecure-m5y^s*6j8e6e261bm)4nvzy7lyat5s%umn1-v3j4m+pxrqo&!s
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "x-app-clone-railway-production.up.railway.app",
+    "localhost",  
+    "127.0.0.1",
+]
 
 
 # Application definition
@@ -49,13 +53,11 @@ INSTALLED_APPS = [
 ]
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
-    ),
+    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
 }
 
 MIDDLEWARE = [
@@ -89,21 +91,31 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "x_app_web.wsgi.application"
 
+DATABASES = {
+    "default": env.db("DATABASE_URL", default="postgresql://postgres:nAYPaDoSpVgyRMIlTzwXcGmpnAFWyong@roundhouse.proxy.rlwy.net:53192/railway")
+}
+
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DB_NAME', 'mydatabase'),
-        'USER': os.getenv('DB_USER', 'user'),
-        'PASSWORD': os.getenv('DB_PASSWORD', 'password'),
-        'HOST': os.getenv('DB_HOST', 'db'),
-        'PORT': os.getenv('DB_PORT', '5432'),
-    }
-}
-print(os.getenv('DB_NAME'), os.getenv('DB_USER'), os.getenv('DB_PASSWORD'), os.getenv('DB_HOST'), os.getenv('DB_PORT'))
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": os.getenv("DB_NAME", "mydatabase"),
+#         "USER": os.getenv("DB_USER", "user"),
+#         "PASSWORD": os.getenv("DB_PASSWORD", "password"),
+#         "HOST": os.getenv("DB_HOST", "db"),
+#         "PORT": os.getenv("DB_PORT", "5432"),
+#     }
+# }
+# print(
+#     os.getenv("DB_NAME"),
+#     os.getenv("DB_USER"),
+#     os.getenv("DB_PASSWORD"),
+#     os.getenv("DB_HOST"),
+#     os.getenv("DB_PORT"),
+# )
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -140,14 +152,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 # Caminho onde os arquivos estáticos serão coletados
-STATIC_URL = '/static/'
+STATIC_URL = "/static/"
 
 # Caminho onde os arquivos estáticos são armazenados no servidor (geralmente fora da pasta do projeto)
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 # Diretórios adicionais onde o Django pode procurar por arquivos estáticos
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),  # Diretório 'static' na raiz do projeto
+    os.path.join(BASE_DIR, "static"),  # Diretório 'static' na raiz do projeto
 ]
 
 # Default primary key field type
@@ -160,9 +172,41 @@ JAZZMIN_SETTINGS = {
 }
 
 INTERNAL_IPS = [
-    '127.0.0.1',  # Localhost
-    '::1',         # IPv6 Localhost
+    "127.0.0.1",  # Localhost
+    "::1",  # IPv6 Localhost
 ]
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+SECURE_SSL_REDIRECT = False
+X_FRAME_OPTIONS = 'DENY'
+SECURE_HSTS_SECONDS = 31536000
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'level': 'ERROR',  # Use 'INFO' ou 'ERROR' dependendo do nível de log desejado
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'ERROR',  # Ajuste o nível de log conforme necessário
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+    },
+}
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
