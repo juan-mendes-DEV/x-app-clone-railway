@@ -1,0 +1,133 @@
+h2{
+    text-align: center;
+    margin-top: 50px;
+}
+a{
+    text-align: center;
+    padding-top: 30px;
+}
+.error{
+    color: red;
+    margin: 10px;
+    font-weight: bold;
+}
+.container{
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    align-items: center;
+    width: 80%;
+    flex-wrap: wrap;
+    padding-top: 60px;
+    height: 100%;
+}
+.container-image{
+    /* background-color: blue; */
+    width: 30%;
+    display: flex;
+    justify-content: end;
+}
+
+.image-logo{
+    width: 350px;
+}
+
+.form-register{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+}
+
+input{
+    border:none;
+    background-color: white;
+    margin-bottom: 10px;
+    height: 25px;
+    color: black;
+}
+label{
+    margin-bottom: 10px;
+}
+button{
+    border: none;
+    height: 30px;
+    width: 50%;
+    margin: 0 auto;
+    border-radius: 20px;
+    cursor: pointer;
+    background-color: rgb(29, 155, 240);
+    transition: 0.5s;
+}
+button:hover{
+    background-color: transparent;
+    border: 1px solid rgb(29, 155, 240);
+}
+
+@media (max-width: 1000px) {
+    h2{
+        text-align: center;
+        margin-top: 50px;
+    }
+    a{
+        text-align: center;
+        padding-top: 30px;
+    }
+    .error{
+        color: red;
+        margin: 10px;
+        font-weight: bold;
+    }
+    .container{
+        display: flex;
+        justify-content: center;
+        margin: 0 auto;
+        align-items: center;
+        width: 100%;
+        flex-wrap: wrap;
+        padding-top: 30px;
+        height: 100%;
+        flex-direction: column;
+    }
+    .container-image{
+        /* background-color: blue; */
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    
+    .image-logo{
+        width: 100px;
+    }
+    
+    .form-register{
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+    }
+    
+    input{
+        border:none;
+        background-color: white;
+        margin-bottom: 10px;
+        height: 25px;
+        color: black;
+    }
+    label{
+        margin-bottom: 10px;
+    }
+    button{
+        border: none;
+        height: 30px;
+        width: 50%;
+        margin: 0 auto;
+        border-radius: 20px;
+        cursor: pointer;
+        background-color: rgb(29, 155, 240);
+        transition: 0.5s;
+    }
+    button:hover{
+        background-color: transparent;
+        border: 1px solid rgb(29, 155, 240);
+    }
+    
+}

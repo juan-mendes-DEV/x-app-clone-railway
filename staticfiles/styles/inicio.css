@@ -1,0 +1,322 @@
+.container-image{
+    /* background-color: blue; */
+    width: 30%;
+    display: flex;
+    justify-content: end;
+}
+
+.image-logo{
+    width: 350px;
+}
+.container{
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    align-items: center;
+    /* background-color: red; */
+    width: 80%;
+    flex-wrap: wrap;
+    padding-top: 40px;
+    height: 100%;
+}
+.group-btn{
+    display: flex;
+    flex-direction:column;
+}
+.btn-google{
+    border: none;
+    border-radius: 20px;
+    height: 44px;
+    width: 300px;
+    font-size: 15px;
+    background-color: white;
+    margin-bottom: 20px;
+    cursor: pointer;
+    color: black;
+}
+.btn-apple{
+    border: none;
+    border-radius: 20px;
+    height: 44px;
+    width: 300px;
+    font-size: 15px;
+    background-color: white;
+    cursor: pointer;
+    color: black;
+}
+
+.titleInit{
+    font-size: 64px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    line-height: 84px;
+    text-decoration: none;
+    color: white;
+}
+.titleInscreva{
+    font-size: 31px;
+    font-weight: 700;
+    line-height: 36px;
+    color: white;    
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+.linha {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+  
+  .linha::before,
+  .linha::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #ccc;
+  }
+  
+  .linha span {
+    margin: 0 10px;
+    font-size: 14px;
+    color: #333;
+  }
+
+.btn-criar{
+    border: none;
+    border-radius: 20px;
+    height: 44px;
+    width: 300px;
+    font-size: 15px;
+    color: white;
+    background-color:rgb(29, 155, 240) ;
+    cursor: pointer;
+}
+.btn-entrar{
+    border: 1px solid #333;
+    border-radius: 20px;
+    height: 44px;
+    width: 300px;
+    font-size: 15px;
+    color: rgb(29, 155, 240);
+    background-color:transparent ;
+    cursor: pointer;
+}
+.btn-entrar:hover{
+    background-color: rgba(29, 156, 240, 0.253);
+}
+/* .rotas{
+    display: flex;
+    flex-direction: row;
+} */
+
+.text{
+    width: 300px;
+    font-size: 11px;
+    color:  #71767B;
+    margin-top: 8px;
+    margin-bottom: 50px;
+}
+.text-entrar{
+    color: white;
+    font-size: 20px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+.rodape{
+    width: 100%;
+    max-width: 100%;
+    /* background-color: red; */
+    margin-top: 60px;
+    margin-bottom: 50px;
+}
+.rodape > ul{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    color: #555555;
+    justify-content: center;
+}
+li{
+    margin-right: 20px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+}
+li:hover{
+    color: white;
+}
+@media (max-width: 1000px) {
+    .container-image{
+        /* background-color: blue; */
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    
+    .image-logo{
+        width: 100px;
+    }
+    .container{
+        display: flex;
+        justify-content: center;
+        margin: 0 auto;
+        align-items: center;
+        /* background-color: red; */
+        width: 100%;
+        flex-wrap: wrap;
+        padding-top: 40px;
+        height: 100%;
+    }
+    .container-content{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .group-btn{
+        display: flex;
+        flex-direction:column;
+    }
+    .btn-google{
+        border: none;
+        border-radius: 20px;
+        height: 44px;
+        width: 300px;
+        font-size: 15px;
+        background-color: white;
+        margin-bottom: 20px;
+        cursor: pointer;
+        color: black;
+    }
+    .btn-apple{
+        border: none;
+        border-radius: 20px;
+        height: 44px;
+        width: 300px;
+        font-size: 15px;
+        background-color: white;
+        cursor: pointer;
+        color: black;
+    }
+    
+    .titleInit{
+        font-size: 30px;
+        font-weight: 700;
+        letter-spacing: 1.2px;
+        line-height: 84px;
+        text-decoration: none;
+        color: white;
+    }
+    .titleInscreva{
+        font-size: 31px;
+        font-weight: 700;
+        line-height: 36px;
+        color: white;    
+        margin-top: 50px;
+        margin-bottom: 20px;
+    }
+    
+    .linha {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 300px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+      }
+      
+      .linha::before,
+      .linha::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: #ccc;
+      }
+      
+      .linha span {
+        margin: 0 10px;
+        font-size: 14px;
+        color: #333;
+      }
+    
+    .btn-criar{
+        border: none;
+        border-radius: 20px;
+        height: 44px;
+        width: 300px;
+        font-size: 15px;
+        color: white;
+        background-color:rgb(29, 155, 240) ;
+        cursor: pointer;
+    }
+    .btn-entrar{
+        border: 1px solid #333;
+        border-radius: 20px;
+        height: 44px;
+        width: 300px;
+        font-size: 15px;
+        color: rgb(29, 155, 240);
+        background-color:transparent ;
+        cursor: pointer;
+    }
+    .btn-entrar:hover{
+        background-color: rgba(29, 156, 240, 0.253);
+    }
+    /* .rotas{
+        display: flex;
+        flex-direction: row;
+    } */
+    
+    .text{
+        width: 300px;
+        font-size: 11px;
+        color:  #71767B;
+        margin-top: 8px;
+        margin-bottom: 50px;
+    }
+    .text-entrar{
+        color: white;
+        font-size: 20px;
+        margin-bottom: 15px;
+        font-weight: bold;
+    }
+    .rodape{
+        width: 100%;
+        max-width: 100%;
+        /* background-color: red; */
+        margin-top: 60px;
+        margin-bottom: 50px;
+    }
+    .rodape > ul{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        color: #555555;
+        justify-content: center;
+    }
+    li{
+        margin-right: 20px;
+        font-size: 13px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    li:hover{
+        color: white;
+    }
+   
+}
+@media (max-width: 500px) {
+    .image-logo{
+        width: 50px;
+    }
+    li{
+        margin-right: 10px;
+        font-size: 13px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+}
