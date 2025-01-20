@@ -22,6 +22,8 @@ from register_e_login.views.home_view import (
     HomeAPIView,
     EditPostAPIView,
     DeletePostAPIView,
+    LikePostAPIView,
+    CommentPostAPIView
 )
 from register_e_login.views.login_view import login_view
 from register_e_login.views.register_view import register_view
@@ -38,8 +40,12 @@ urlpatterns = [
     path("login/", login_view, name="login"),
     path("register/", register_view, name="register"),
     path("home/", HomeAPIView.as_view(), name="home"),
+    
+    path("post/<int:post_id>/like/", LikePostAPIView.as_view(), name="like_post"),
+    path("post/<int:post_id>/comment/", CommentPostAPIView.as_view(), name="add_comment"),
     path("post/<int:post_id>/edit/", EditPostAPIView.as_view(), name="edit_post"),
     path("post/<int:post_id>/delete/", DeletePostAPIView.as_view(), name="delete_post"),
+
     path("__debug__/", include("debug_toolbar.urls")),
     path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),

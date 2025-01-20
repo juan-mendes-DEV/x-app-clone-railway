@@ -49,8 +49,23 @@
                     {% for post in posts %}
                         <li class='list-post'>
                             
-                            <p class='post-content'>{{ post.content }}</p>
                             <small>Criado por: {{ post.user }}</small>
+                            <p class='post-content'>{{ post.content }}</p>
+                            <button onclick="likePost({{ post.id }})">
+                                Like ({{ post.likes.count }})
+                            </button>
+                            <div>
+                                <form method="POST" action="{% url 'add_comment' post.id %}">
+                                    {% csrf_token %}
+                                    <textarea name="content" placeholder="Escreva um comentário..."></textarea>
+                                    <button type="submit">Comentar</button>
+                                </form>
+                                <ul>
+                                    {% for comment in post.comments.all %}
+                                        <li>{{ comment.user.username }}: {{ comment.content }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
                             
                             <!-- Verifica se o post pertence ao usuário logado -->
                             {% if post.user == request.user.username %}

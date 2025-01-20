@@ -2,6 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from register_e_login.models.post import Post
 from register_e_login.serializers.post_serializer import PostSerializer
+from register_e_login.models import Comment
 from django.shortcuts import redirect, get_object_or_404
 from django.http import Http404
 from rest_framework import status
@@ -89,3 +90,31 @@ class DeletePostAPIView(APIView):
 
         post.delete()
         return redirect("home")
+
+class LikePostAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, post_id):
+        post = get_object_or_404(Post, id=post_id)
+        like, created = Like.objects.get_or_create(user=request.user, post=post)
+        if not created:
+            like.delete()  # Remove a curtida se já existe
+            return Response({"message": "Like removed."}, status=status.HTTP_200_OK)
+
+        return Response({"message": "Post liked."}, status=status.HTTP_201_CREATED)
+
+
+class CommentPostAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, post_id):
+        post = get_object_or_404(Post, id=post_id)
+        content = request.data.get("content", "").strip()
+        if not content:
+            return Response(
+                {"errors": {"content": ["O comentário não pode estar vazio."]}},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        comment = Comment.objects.create(user=request.user, post=post, content=content)
+        return Response({"message": "Comment added.", "comment_id": comment.id})
