@@ -44,7 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const postId = button.getAttribute('data-post-id');
             button.disabled = true; // Desativa o botão temporariamente
             likePost(postId, button);
-            window.location.reload();
         });
     });
 });
