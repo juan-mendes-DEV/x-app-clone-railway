@@ -14,11 +14,16 @@
             <img src="{% static 'images/twitter-x-white-logopng.webp' %}" class='image-logo' alt="Descrição da imagem">
         </div>
 
-        <form method="POST" action="{% url 'edit_post' post.id %}" enctype="multipart/form-data">
+        <form method="POST" action="." enctype="multipart/form-data">
             {% csrf_token %}
-            <input type="hidden" name="_method" value="PUT">
-            <textarea name="content" rows="4" cols="50" placeholder="Digite seu post aqui...">{{ post.content }}</textarea><br><br>
-            <button type="submit" class='btn-salvar'>Salvar alterações</button>
+            <textarea name="content" rows="4" cols="50" class="text-area-input">{{ post.content }}</textarea><br><br>
+        
+            <label for="image">Alterar imagem (opcional):</label>
+            <input type="file" name="image" accept="image/*"><br><br>
+        
+            <div class='div-btn'>
+                <button type="submit" class="btn-postar">Salvar Alterações</button>
+            </div>
         </form>
         {% if errors %}
             <ul>

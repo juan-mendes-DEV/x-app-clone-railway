@@ -1,11 +1,79 @@
-.container{
+.dropdown-content {
+    display: none; /* Escondido por padrão */
+    background-color: black;
+    position: absolute;
+    top: 0px;
+    left: 20px;
+    height: 400px;
+    width: 400px;
+    box-shadow: 0px 8px 16px rgba(255, 255, 255, 0.801);
+    z-index: 3;
+    border-radius: 10px;
+  }
+.show {
+    display: block; /* Mostra o menu */
+}
+.dropdown > .dropdownButton{
+    border: none;
+    background-color: transparent;
+    color: white;
+    font-size: 15px;
+}
+
+.ul-drop{
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+    /* background-color: red; */
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+.li-drop{
+    /* background-color: yellow; */
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    margin: auto 0;
+    height: 40px;
+    width: 100%;
+    border-radius: 20px;
+    padding-left: 15px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+.li-drop:hover{
+    background-color: #7a7a7a;
+}
+.image-upload-input{
+    display: none;
+}
+.material-symbols-outlined{
+    cursor: pointer;
+}
+.containerr{
     display: flex;
     justify-content: space-between;
     height: 150vh;
     flex-wrap: wrap;
 }
-.error-li{
+.error-li ,.red{
     color: red;
+}
+.red{
+    font-size: 60px;
+}
+.post-image{
+    text-align: center;
+    width: 100%px;
+    padding: 20px;
+}
+.user-link{
+    list-style: none;
+    text-decoration: none;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-transform: capitalize;
 }
 .main{
     display: flex;
@@ -66,7 +134,8 @@
 .div-btn{
     display: flex;
     width: 100%;
-    justify-content: end;
+    justify-content: space-between;
+    align-items: center;
     padding: 10px;
 }
 h2{
@@ -92,14 +161,15 @@ h2{
     width: 20%;
 }
 .list-content{
+    text-align: start;
+    display: flex;
+    align-items: center;
     font-size: 20px;
-    margin-bottom: 10px;
+    margin: auto 0;
     height: 40px;
     width: 100%;
     border-radius: 20px;
     padding-left: 15px;
-    padding-top: 10px;
-    text-align: start;
     transition: 0.3s;
     cursor: pointer;
 }
@@ -161,25 +231,84 @@ h2{
     font-weight: bold;
 }
 .list-post{
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
     margin-bottom: 30px;
     width: 100%;
+    border-bottom: 1px solid #555555;
+    
     /* background-color: rgb(54, 54, 54); */
 
+}
+.like-button{
+    width: 100px;
+    background-color: rgb(0, 110, 255);
+    border: none;
+    color: white;
+    font-size: 15px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 10px;
+}
+.like-comment{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+.comment-submit{
+    width: 100px;
+    background-color: rgba(201, 43, 43, 0.692);
+    border: none;
+    color: white;
+    font-size: 15px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 10px;
+}
+.text-area{
+    width: 300px; /* Largura fixa */
+    height: 20px; /* Altura fixa */
+    resize: none; /* Impede redimensionamento */
+    outline: none; /* Remove o contorno ao focar */
+    border: none;
+    border-bottom: 1px solid #555555;
 }
 .ul-post{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 20px;
     /* align-items: flex-start; */
     /* background-color: rgb(255, 255, 255); */
     width: 100%;
 }
 .post-content{
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+    margin-left: 20px;
     color: white;
     text-transform: uppercase;
-    font-weight: bold;
+}
+.post-email{
+    font-size: 10px;
+    color: #7a7a7a;
+}
+.profile-img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+    object-fit: cover;
+
+}
+.header-profile{
+    display: flex;
+    flex-direction: row;
+    /* justify-content: center; */
+    align-items: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-left: 20px;
 }
 .btn-editar, .btn-deletar{
     border: none;
@@ -189,22 +318,40 @@ h2{
     
 }
 .btn-editar{
-    background-color: cadetblue;
+    text-decoration: underline;
     margin-right: 10px;
     width: 100px;
     cursor: pointer;
 }
+.btn-editar:hover{
+    color: rgb(88, 88, 255);
+}
 .btn-deletar{
-    background-color: red;
+    text-decoration: underline;
     width: 100px;
     cursor: pointer;
+}
+.btn-deletar:hover{
+    color: rgb(88, 88, 255);
 }
 .btn-e-btn-d{
     display: flex;
     flex-direction: row;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+.comments{
+    margin-left: 20px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.comments-li{
+    font-size: 10px;
+    color: rgb(43, 255, 255);
+    text-transform: capitalize;
 }
 @media (max-width: 1000px) {
-    .container{
+    .containerr{
         display: flex;
         justify-content: space-between;
         height: 150vh;

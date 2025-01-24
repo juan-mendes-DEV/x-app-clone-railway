@@ -2,21 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Feed</title>
+    <title>Perfil de {{ user.username }}</title>
     {% load static %}
-        <link rel="stylesheet" href="{% static 'styles/global.css' %}">
-        <link rel="stylesheet" href="{% static 'styles/home.css' %}">
-        <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
-        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-    </head>
+    <link rel="stylesheet" href="{% static 'styles/global.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/perfil.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/home.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+</head>
 <body>
-    <div class='container-fluid containerr'>
+    <div class="containerr">
         <div class='lateral'>
             <ul>
                 <li ><img src="{% static 'images/twitter-x-white-logopng.webp' %}" class='image-logo' alt="Descrição da imagem"></li>
                 <li class='list-content'>
                     <span class="material-symbols-outlined">home</span>
-                    Pagina Inicial
+                    <a href="/home/">Pagina Inicial</a>
                 </li>
                 <li class='list-content'>
                     <span class="material-symbols-outlined">
@@ -44,7 +46,7 @@
                     <span class="material-symbols-outlined">
                         person
                     </span>
-                    <a href="/perfil/">Perfil</a>
+                    <a href="#">Perfil</a>
                 </li>
                 <li class='list-content'>
                     <div class="dropdown">
@@ -112,108 +114,104 @@
                 </li>
             </ul>
         </div>
-
-        
         <div class='main'>
-            <div class='main-groups'>
-                <p>para você</p>
-                <p>seguindo</p>
+                <div class='perfil-name'>
+                    <a href="/home/">
+                        <span class="material-symbols-outlined span-right">
+                            arrow_back
+                        </span>
+                    </a>
+                    <div class='perfil-name-post'>
+                        <h2>{{ request.user.username }}</h2>
+                        <p>{{ posts_count }} post</p>
+                    </div>
+                </div>
+            
+            <div class='header-perfil'>
+
+                {% if user.profile.cover_image %}
+                    <img src="{{ user.profile.cover_image.url }}" alt="Imagem de Capa" class='capa'>
+                {% else %}
+                    <p>Você ainda não tem uma imagem de capa.</p>
+                {% endif %}
+                <div class='container-perfil'>
+                    {% if user.profile.profile_image %}
+                        <img src="{{ user.profile.profile_image }}" alt="Imagem de Perfil" class='perfil'>
+                    {% else %}
+                        <img src="{% static 'default-profile-image.jpg' %}" alt="Imagem de Perfil Padrão">
+                    {% endif %}
+                </div>
+                
+                <div>
+                    <div class='user-content'>
+                        <h2>{{ request.user.username }}</h2>
+                    </div>
+
+                    <ul class='ul-perfil'>
+                        <li> Posts</li>
+                        <li> Respostas</li>
+                        <li> Destaques</li>
+                        <li> Artigos</li>
+                        <li> Midia</li>
+                        <li> Curtidas</li>
+                    </ul>
+
+                </div>
             </div>
-            
-            <form method="POST" action="." enctype="multipart/form-data" class='post-user'>
-                {% csrf_token %}
-                <textarea name="content" rows="4" cols="50" placeholder="O que está acontecendo?..." class='text-area-input'></textarea><br><br>
-            
-                <!-- Campo para enviar a imagem -->
-                <div class='div-btn'>
-                <div class="image-upload-container">
-                    <label for="image-upload" class="custom-upload-label">
-                        <span class="material-symbols-outlined">image</span>
-                    </label>
-                    <input type="file" name="image" accept="image/*" id="image-upload" class="image-upload-input">
-                </div>
-            
-                    <button type="submit" class='btn-postar'>Postar</button>
-                </div>
-            </form>
-            
+              <!-- Atualizar Imagens -->
+             
             <ul class='ul-post'>
                 {% if posts %}
                     {% for post in posts %}
-
                         <li class='list-post'>
                             <div class='header-profile'>
                                 {% if user.profile.profile_image %}
-                                    <img class='profile-img' src="{{ user.profile.profile_image.url }}" alt="Imagem de Perfil">
+                                    <img class='profile-img' src="{{ user.profile.profile_image }}" alt="Imagem de Perfil">
                                 {% else %}
-                                    <span class="material-symbols-outlined">
-                                        person
-                                    </span>
+                                    <span class="material-symbols-outlined">person</span>
                                 {% endif %}
-                                <a href="/profile/{{ post.user }}/" class='user-link'> {{ post.user }} <span class='post-email'> {{post.user_email }}</span> </a>
+                                <a href="/profile/{{ post.user }}/" class='user-link'> {{ post.user }} <span class='post-email'> {{ post.user_email }}</span> </a>
                             </div>
-
+            
                             <p class='post-content'>{{ post.content }}</p>
                             
                             {% if post.image %}
-                            <img src="{{ post.image }}" alt="Imagem do Post" class='post-image'>
+                                <img src="{{ post.image }}" alt="Imagem do Post" class='post-image'>
                             {% endif %}
                             
-                            
                             <div>
-                            <div class='like-comment'>
-                                <button class="like-button {% if post.is_liked_by_user %}liked{% endif %}" data-post-id="{{ post.id }}">
-                                    {% if post.is_liked_by_user %}
-                                    Curtido ({{ post.likes_count }})
-                                    {% else %}
-                                    Curtir ({{ post.likes_count }})
-                                    {% endif %}
-                                </button>
-                                <form method="POST" action="{% url 'comment_post' post.id %}">
-                                    {% csrf_token %}
-                                    <textarea name="content" placeholder="Escreva um comentário..." class='text-area'></textarea>
-                                    <button type="submit" class='comment-submit'>Comentar</button>
-                                </form>
-                            </div>
-
-
+                                <div class='like-comment'>
+                                    <button class="like-button {% if post.is_liked_by_user %}liked{% endif %}" data-post-id="{{ post.id }}">
+                                        {% if post.is_liked_by_user %}
+                                        Curtido {{ post.likes_count }}
+                                        {% else %}
+                                        Curtir {{ post.likes_count }}
+                                        {% endif %}
+                                    </button>
+                                    <form method="POST" action="{% url 'comment_post' post.id %}">
+                                        {% csrf_token %}
+                                        <textarea name="content" placeholder="Escreva um comentário..." class='text-area'></textarea>
+                                        <button type="submit" class='comment-submit'>Comentar</button>
+                                    </form>
+                                </div>
+            
                                 <ul class='comments'>
-                                    {% for comment in post.comments %}
+                                    {% for comment in post.comments.all %}
                                         <li class='comments-li'>{{ comment.user }}: {{ comment.content }}</li>
                                     {% endfor %}
                                 </ul>
-
                             </div>
                             
-                            
-
-                            <!-- Verifica se o post pertence ao usuário logado -->
-                            {% comment %} {% if post.user == request.user.username %}
-                                <!-- Botão para Editar -->
-                                <div class='btn-e-btn-d'>
-                                    <form method="GET" action="{% url 'edit_post' post.id %}">
-                                        {% csrf_token %}
-                                        <button type="submit" class='btn-editar'>Editar</button>
-                                    </form>
-                
-                                    <!-- Botão para Deletar -->
-                                    <form method="POST" action="{% url 'delete_post' post.id %}">
-                                        {% csrf_token %}
-                                        <button type="submit" class='btn-deletar'>Deletar</button>
-                                    </form>
-                                </div>
-                            {% endif %} {% endcomment %}
                         </li>
-
                     {% endfor %}
                 {% else %}
                     <li>Nenhum post encontrado.</li>
                 {% endif %}
             </ul>
+           
         
             <p>Quantidade de posts: {{ posts|length }}</p> 
         </div>
-
         <div class='right'>
             <input placeholder='buscar'/ class='buscar-input'>
             <div class='right-premium'>
@@ -259,24 +257,12 @@
                 {% endfor %}
             </div>
         </div>
+        
 
 
+        
     </div>
 
-    
-
-    
-
-    <!-- Exibição de erros -->
-    {% if errors %}
-        <ul class='error-ul'>
-            {% for field, messages in errors.items %}
-                {% for message in messages %}
-                    <li class='error-li'>{{ field }}: {{ message }}</li>
-                {% endfor %}
-            {% endfor %}
-        </ul>
-    {% endif %}
     <script src="{% static 'js/like.js' %}"></script>
     <script src="{% static 'js/action.js' %}"></script>
 </body>

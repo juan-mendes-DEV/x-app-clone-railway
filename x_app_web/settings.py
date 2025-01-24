@@ -28,7 +28,7 @@ environ.Env.read_env(os.path.join(BASE_DIR, ".env.dev"))
 SECRET_KEY = os.getenv("SECRET_KEY", default="django-insecure-m5y^s*6j8e6e261bm)4nvzy7lyat5s%umn1-v3j4m+pxrqo&!s")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     "x-app-clone-railway-production.up.railway.app",
